@@ -1,0 +1,89 @@
+C00D 000 Jump to start
+000A 001 SIZE	dw	0	Size of Array (10)
+005A 002 array	dw	0	Array first element loc
+0000 003 zero	dw	0
+0001 004 one	dw	1
+0000 005 i		dw	0
+3000 006 loadit
+4000 007 storeit
+0000 008 j		dw	0
+6000 009 subit
+0000 00A temp	dw	0
+0063 00B last_index dw	63	index of last array element
+0000 00C EXTRA VARIABLES
+3007 00D START LOOP	load storeit
+5005 00E 		add i
+5002 00F 		add array first element 
+4012 010 		store storeit
+1000 011 		read input
+0000 012 		storeit
+3005 013 		load i
+5004 014 		add one
+4005 015 		store i
+6001 016 		subtract SIZE
+D019 017 jmpe 	out of LOOP, done getting array data, if SIZE = i
+C00D 018 jump 	to START
+3003 019 		load 0
+4005 01A 		store i (reset i to 0)
+3001 01B OutLoop	load SIZE
+6005 01C 		subtract i
+D04A 01D jmpe		out of Outloop if SIZE = i
+3001 01E 		load SIZE
+6004 01F 		subtract 1
+4008 020 		store j		
+3008 021 InnLoop	load j		
+6005 022 		subtract i
+D046 023 jmpe		out of Innloop if j = i
+3006 024 		load loadit
+5008 025 		add j
+5002 026 		add array first element loc
+402D 027 		store loadit
+3009 028 		load subit
+5008 029 		add j
+6004 02A 		sub one
+5002 02B 		add array first element loc
+402E 02C 		store	
+0000 02D 		doit
+0000 02E 		doit
+E031 02F jmpl		past jump to PrintLoop
+C042 030 jump		to PrintLoop if fully sorted
+3006 031 		load loadit
+5008 032 		add j
+5002 033 		add array first element loc
+403C 034 		store
+6004 035 		sub 1
+403E 036 		store
+6006 037 		sub loadit
+5007 038  		add storeit
+4041 039 		store
+5004 03A 		add one
+403F 03B 		store
+0000 03C 		load arr j
+400A 03D 		store temp
+0000 03E 		load arr j-1
+0000 03F 		store arr j
+300A 040 		load temp
+0000 041 		store to arr j-1
+3008 042 PrintLoop	load j
+6004 043 		sub 1
+4008 044 		store j
+C021 045 jump		up to InnLoop
+3005 046 		load i
+5004 047 		add 1
+4005 048 		store i
+C01B 049 jump		up to OutLoop
+3003 04A 		load 0
+4005 04B 		store i		
+3005 04C 		load i		
+6001 04D 		sub SIZE
+D059 04E jump HALT
+3006 04F 		load loadit
+5005 050 		add i
+5002 051 		add array first element loc
+4053 052 		store
+0000 053 		doit
+1800 054 		printH
+3005 055 		load i
+5004 056 		add one
+4005 057 		store i
+C04C 058 jump 	to PrintLoop

@@ -1,0 +1,22 @@
+C006 000	jump start skip around the variables
+0000 001	i	dw
+0014 002	SIZE 	dw
+0001 003 	one	dw
+3000 004 	loadit
+3002 005 loop	load SIZE
+6001 006 		sub i
+E014 007 		jmpl (SIZE - i < 0)
+3001 008 		load i
+6003 009 		sub 1
+D00F 00A		jmpe (i = 0)
+3004 00B		load 	loadit
+5001 00C		add i
+400E 00D		store doit	
+0000 00E	
+1800 00F		print
+3001 010		load i
+5003 011		add 1
+4001 012		store i
+C005 013		jmp loop
+0000 014	halt	
+
