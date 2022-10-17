@@ -1,0 +1,40 @@
+C006 000 jmp 	start 	skip around the variables
+0000 001 A 		dw 	0 	int A
+0000 002 B		dw	0	int B
+0000 003 C		dw	0 	int C
+0000 004 SUM	dw	0	int SUM
+0000 005 zero
+1000 006 start 	read A 	
+4001 007 		store	A
+1000 008 		read B
+4002 009 		store B
+1000 00A 		read C
+4003 00B 		store C
+3004 00C		load SUM
+5001 00D		Add A 	
+4004 00E		Store SUM			
+3004 00F 		load SUM
+5002 010 		Add B
+4004 011		store SUM
+3004 012		Load SUM
+5003 013		Add C
+4004 014		Store SUM
+3004 015		Load SUM
+1800 016		Print SUM
+D01D 017		exit
+4004 018		Store SUM
+3005 019		Load zero
+B000 01A		
+4004 01B		Store SUM
+C006 01C		jmp loop	go to loop
+4004 01D		Store Sum (before printing all)
+3001 01E		Load A
+1800 01F		Print A
+4001 020		Store A
+3002 021		Load B
+1800 022		Print B
+4002 023		Store B
+3003 024		Load C
+1800 025		Print C
+4003 026		Store C
+0000 027 	halt 		halt

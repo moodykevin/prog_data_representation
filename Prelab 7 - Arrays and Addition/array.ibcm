@@ -1,0 +1,53 @@
+C00A 000 
+0000 001 	c	dw	0	how many elements added	
+0000 002 	SIZE	dw	0	size of array	
+0036 003 	a	dw	0	array first element
+3000 004 	loadit
+0000 005 	i	dw	0	iterator int
+4000 006 	storeit
+0001 007 	one	dw	1	 
+0000 008 	zero 	dw 	0
+B000 009				blank lines
+1000 00A start	readH		read SIZE	
+4002 00B 		store SIZE	store SIZE		
+3003 00C loop	load a		Add elements to an array	
+5006 00D		add storeit		
+5005 00E		add i
+4011 00F		store storeit
+1000 010		read
+0000 011		storeit
+3005 012				i+=1
+5007 013		
+4005 014		
+6002 015		sub SIZE
+D018 016		jmpl
+C00C 017		jump 	loop
+3008 018		load zero
+4005 019		store i
+3004 01A loop2	load loadit		print out going forward
+5003 01B		add a
+5005 01C		add i
+401E 01D		store loadit
+0000 01E		loadit
+1800 01F		print
+3005 020				i+=1
+5007 021		
+4005 022		
+6002 023		sub SIZE
+D026 024		jmpe
+C01A 025		jump 	loop2
+3005 026 				i-=1
+6007 027		
+4005 028 		
+3004 029 loop3	load loadit		print out going backward
+5003 02A 		add a
+5005 02B		add i
+402D 02C		store loadit
+0000 02D		loadit
+1800 02E		print
+3005 02F				i-=1
+6007 030		
+4005 031 		
+E034 032 		jmpe
+C029 033		jump loop3
+0000 034	halt
